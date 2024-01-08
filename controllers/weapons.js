@@ -1,117 +1,117 @@
-const Car = require("../models/cars");
+const Weapon = require("../models/weapons");
 
-exports.getAllCars = async (req, res) => {
+exports.getAllWeapons = async (req, res) => {
   try {
-    const result = await Car.find();
+    const result = await Weapon.find();
     if (result && result.length !== 0) {
       return res.status(200).send({
-        msg: "Cars were found",
+        msg: "weapons were found",
         payload: result,
       });
     }
     res.status(500).send({
-      msg: "Cars were not found",
+      msg: "weapons were not found",
     });
   } catch (error) {
     res.status(500).send(error);
   }
 };
 
-exports.getCarById = async (req, res) => {
+exports.getWeaponById = async (req, res) => {
   try {
-    const result = await Car.findById(req.params.id);
+    const result = await Weapon.findById(req.params.id);
     if (result) {
       return res.status(200).send({
-        msg: "Car was found",
+        msg: "Weapon was found",
         payload: result,
       });
     }
     res.status(500).send({
-      msg: "Car was not found",
+      msg: "Weapon was not found",
     });
   } catch (error) {
     res.status(500).send(error);
   }
 };
 
-exports.createCar = async (req, res) => {
+exports.createWeapon = async (req, res) => {
   try {
-    const data = new Car({
+    const data = new Weapon({
       brand: req.body.brand,
-      model: req.body.model,
+      type: req.body.type,
       color: req.body.color,
       price: req.body.price,
     });
     const result = await data.save();
     if (result) {
       return res.status(201).send({
-        msg: "Car was created",
+        msg: "Weapon was created",
         payload: result,
       });
     }
     res.status(500).send({
-      msg: "Car was not created",
+      msg: "Weapon was not created",
     });
   } catch (error) {
     res.status(500).send(error);
   }
 };
 
-exports.updateCar = async (req, res) => {
+exports.updateWeapon = async (req, res) => {
   try {
     const data = {
       brand: req.body.brand,
-      model: req.body.model,
+      type: req.body.type,
       color: req.body.color,
       price: req.body.price,
     };
-    const result = await Car.findByIdAndUpdate(req.params.id, data);
+    const result = await Weapon.findByIdAndUpdate(req.params.id, data);
     if (result) {
       return res.status(200).send({
-        msg: "Car was updated",
+        msg: "Weapon was updated",
         payload: result,
       });
     }
     res.status(500).send({
-      msg: "Car was not updated",
+      msg: "Weapon was not updated",
     });
   } catch (error) {
     res.status(500).send(error);
   }
 };
 
-exports.patchCar = async (req, res) => {
+exports.patchWeapon = async (req, res) => {
   try {
     const data = {};
     for (const ops of req.body) {
       data[ops.propName] = ops.value;
     }
-    const result = await Car.findByIdAndUpdate(req.params.id, data);
+    const result = await Weapon.findByIdAndUpdate(req.params.id, data);
     if (result) {
       return res.status(200).send({
-        msg: "Car was patched",
+        msg: "Weapon was patched",
         payload: result,
       });
     }
     res.status(500).send({
-      msg: "Car was not patched",
+      msg: "Weapon was not patched",
     });
   } catch (error) {
     res.status(500).send(error);
   }
 };
 
-exports.deleteCar = async (req, res) => {
+exports.deleteWeapon = async (req, res) => {
   try {
-    const result = await Car.findByIdAndDelete(req.params.id);
+    const result = await Weapon.findByIdAndDelete(req.params.id);
     if (result) {
       return res.status(200).send({
-        msg: "Car was deleted",
+        msg: "Weapon was deleted",
         payload: result,
       });
     }
     res.status(500).send({
-      msg: "Car was not deleted",
+      msg: "Weapon was not deleted",
     });
   } catch (error) {
     res.status(500).send(error);
