@@ -14,10 +14,10 @@ mongoose
 
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
-const phonesRouter = require("./routes/phones");
 const carsRouter = require("./routes/cars");
 const weaponsRouter = require("./routes/weapons");
 const studentsRouter = require("./routes/students");
+const phonesRouter = require("./routes/phones");
 
 const app = express();
 
@@ -38,6 +38,7 @@ app.use("/phones", phonesRouter);
 app.use("/cars", carsRouter);
 app.use("/weapons", weaponsRouter);
 app.use("/students", studentsRouter);
+app.use("/phones", phonesRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
